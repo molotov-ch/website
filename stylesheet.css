@@ -1,14 +1,12 @@
-body {
-    background-color: black;
-    font-family: Arial, Helvetica, sans-serif;
-    color: black;
-}
-.parent {
-  display: flex;
-  justify-content: center; /* Horizontal zentrieren */
-  align-items: center;     /* Vertikal zentrieren */
+.borderA {
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
 }
 
-.box {
-    background-color: aliceblue;
+a.active {
+    color: black;
+    pointer-events: none;
+    text-decoration: none;
+
 }
