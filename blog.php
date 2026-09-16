@@ -59,8 +59,8 @@ function parseRecentJsonBlog(string $filePath, string $postsKey = 'posts'): arra
         throw new Exception("No posts array found in JSON.");
     }
 
-    $post;
-    $timestamp;
+    $post = null;
+    $timestamp = null;
 
     foreach ($posts as $post) {
         if (!is_array($post) || !isset($post['timestamp'])) {
@@ -119,7 +119,7 @@ function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
     return $filtered;
 }
 
-$dataFile = __DIR__ . '../data/blogs.json';
+$dataFile = __DIR__ . '/../data/blogs.json';
 
 if (isset($_GET['id'])) {
     $result = parseJsonBlog($dataFile, (int) $_GET['id']);
