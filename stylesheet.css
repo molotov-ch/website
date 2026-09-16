@@ -3,3 +3,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     color: aliceblue;
 }
+.parent {
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center;     /* Vertikal zentrieren */
+}
