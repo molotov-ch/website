@@ -8,3 +8,7 @@ body {
   justify-content: center; /* Horizontal zentrieren */
   align-items: center;     /* Vertikal zentrieren */
 }
+
+.box {
+    background-color: aliceblue;
+}
