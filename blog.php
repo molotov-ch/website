@@ -1,3 +1,137 @@
+<?php
+function getPostByIndex(string $filePath, int $index, string $postsKey = 'posts')
+{
+    $jsonData = file_get_contents($filePath);
+    $data = json_decode($jsonData, true);
+
+    if (!isset($data[$postsKey]) || !is_array($data[$postsKey])) {
+        return null;
+    }
+
+    return $data[$postsKey][$index] ?? null;
+}
+
+function parseJsonBlog(string $filePath, $id, string $postsKey = 'posts'): array
+{
+    $json  = file_get_contents($filePath);
+    $data  = json_decode($json, true);
+
+    if (isset($data[$postsKey]) && is_array($data[$postsKey])) {
+        $posts = $data[$postsKey];
+    } elseif (is_array($data) && array_values($data) === $data) {
+        $posts = $data;
+    } else {
+        throw new Exception("No posts array found in JSON (expected '{$postsKey}' or a root array).");
+    }
+
+    usort($posts, function ($a, $b) {
+        $format = 'd/m/Y His';
+        $dateA  = DateTime::createFromFormat($format, $a['timestamp']);
+        $dateB  = DateTime::createFromFormat($format, $b['timestamp']);
+        return $dateB <=> $dateA;
+    });
+
+    $post = $posts[$id] ?? null;
+
+    if (!$post) {
+        return [];
+    }
+
+    return [
+        'title'     => $post['title']     ?? null,
+        'content'   => $post['content']   ?? null,
+        'author'    => $post['author']     ?? null,
+        'timestamp' => $post['timestamp'] ?? null,
+        'image'     => $post['image']     ?? null,
+    ];
+}
+
+function parseRecentJsonBlog(string $filePath, string $postsKey = 'posts'): array
+{
+    $json = file_get_contents($filePath);
+    $data = json_decode($json, true);
+
+    if (isset($data[$postsKey]) && is_array($data[$postsKey])) {
+        $posts = $data[$postsKey];
+    } elseif (is_array($data) && array_values($data) === $data) {
+        $posts = $data;
+    } else {
+        throw new Exception("No posts array found in JSON.");
+    }
+
+    $post;
+    $timestamp;
+
+    foreach ($posts as $post) {
+        if (!is_array($post) || !isset($post['timestamp'])) {
+            continue;
+        }
+        $dt = DateTime::createFromFormat('d/m/Y His', $post['timestamp']);
+        if (!$dt) {
+            continue;
+        }
+        $ts = $dt->getTimestamp();
+        if ($post === null || $ts > $timestamp) {
+            $post = $post;
+            $timestamp   = $ts;
+        }
+    }
+
+    return [
+        'title'     => $post['title']     ?? null,
+        'content'   => $post['content']   ?? null,
+        'author'    => $post['author']     ?? null,
+        'timestamp' => $post['timestamp'] ?? null,
+        'image'     => $post['image']     ?? null,
+    ];
+}
+
+function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
+{
+    $jsonData = file_get_contents($filePath);
+    $data     = json_decode($jsonData, true);
+
+    if (isset($data[$postsKey]) && is_array($data[$postsKey])) {
+        $posts = $data[$postsKey];
+    } elseif (is_array($data) && array_values($data) === $data) {
+        $posts = $data;
+    } else {
+        return [];
+    }
+
+    $filtered = [];
+    foreach ($posts as $item) {
+        if (isset($item['title'], $item['timestamp'])) {
+            $filtered[] = [
+                'title'     => $item['title'],
+                'timestamp' => $item['timestamp'],
+            ];
+        }
+    }
+
+    usort($filtered, function ($a, $b) {
+        $format = 'd/m/Y His';
+        $dateA  = DateTime::createFromFormat($format, $a['timestamp']);
+        $dateB  = DateTime::createFromFormat($format, $b['timestamp']);
+        return $dateB <=> $dateA;
+    });
+
+    return $filtered;
+}
+
+$dataFile = __DIR__ . '/data/blogs.json';
+
+if (isset($_GET['id'])) {
+    $result = parseJsonBlog($dataFile, (int) $_GET['id']);
+} else {
+    $result = parseRecentJsonBlog($dataFile);
+}
+
+$dtObj       = DateTime::createFromFormat('d/m/Y His', $result['timestamp'] ?? '');
+$postDate    = $dtObj ? $dtObj->format('d/m/Y H:i:s') : '—';
+$archivePosts = parseJsonTitles($dataFile);
+?>
+
 <!doctype html>
 <html lang="en">
   <head>
