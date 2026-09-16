@@ -119,7 +119,7 @@ function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
     return $filtered;
 }
 
-$dataFile = __DIR__ . '/data/blogs.json';
+$dataFile = __DIR__ . '../data/blogs.json';
 
 if (isset($_GET['id'])) {
     $result = parseJsonBlog($dataFile, (int) $_GET['id']);
