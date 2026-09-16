@@ -39,7 +39,7 @@
                 <div class="col-4 borderL">
                   <nav>
                     <a href="index.html">home<br /></a>
-                    <a href="blog.html" class="active">blog<br /></a>
+                    <a href="blog.php" class="active">blog<br /></a>
                     <a href="articles.html">articles<br /></a>
                     <a href="about.html">about<br /></a>
                     <a href="contact.html">contact<br /></a>
