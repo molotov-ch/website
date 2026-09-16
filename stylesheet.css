@@ -4,6 +4,33 @@
     border-width: 2px;
 }
 
+.borderB {
+    border-color: black;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-width: 2px;
+}
+
+.borderT {
+    border-color: black;
+    border-style: solid;
+    border-right: none;
+    border-left: none;
+    border-bottom: none;
+    border-width: 2px;
+}
+
+.borderL {
+    border-color: black;
+    border-style: solid;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-width: 2px;
+}
+
 a.active {
     color: black;
     pointer-events: none;

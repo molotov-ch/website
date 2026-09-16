@@ -14,7 +14,10 @@ so i decided to host my own. i encourage others to do the same.
 
 well:
 
+times have changed. the world wide web of the late 90s, and 2000s is gone. the world wide web of today is one of tracking, stealing private information & surveillance. 
 as we enter an age of a decentralised surveillance system, using neural networks for analysing unconsenting users data and personal information, i'm increasingly a fan of making yourself digitally sovereign. make your own cloud. your own music player. your own chatroom. 
+
+show the world who you are by defining it yourself. not letting an algorithm decide what ads fit you best.
 
 while commercial websites display more and more agressive messages, target and track their users, the indie web respects the individuals, their intelligence and their privacy; it’s an open forum for thoughts and debate. while purely commercial websites turn into information and entertainment magazines, while tycoons of media, telecom, computing and military agencies fight for the control of the Internet, the indie web offers a free vision of the world, bypasses the economic censorship of news, its confusion with advertising and infommercial, its reduction to a dazing and manipulating entertainment.
 
