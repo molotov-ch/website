@@ -112,7 +112,7 @@ $postDate = $dtObj ? $dtObj->format('d/m/Y H:i:s') : '—';
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-4 borderL">
+                            <div class="col-4">
                                 <nav>
                                     <a href="index.html" class="item">home<br /></a>
                                     <a href="blog.php" class="active">blog<br /></a>
