@@ -31,9 +31,24 @@
     border-width: 2px;
 }
 
+.borderR {
+    border-color: black;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    border-bottom: none;
+    border-width: 2px;
+}
+
 a.active {
     color: black;
     pointer-events: none;
     text-decoration: none;
 
+}
+
+.item {
+    color: darkred;
+    pointer-events: all;
+    text-decoration: underline;
 }
