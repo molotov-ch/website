@@ -89,7 +89,7 @@ $archivePosts = parseJsonTitles($dataFile);
                             <?= htmlspecialchars($post['genre'] ?? '[genre]') ?>
                           </div>
                           <div style="font-size: 0.9em;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            <?= htmlspecialchars($post['summary'] ??'[summary]') ?>
                           </div>
                         </div>
                       </a>
