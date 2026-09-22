@@ -20,6 +20,7 @@ function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
         'title' => $item['title'],
         'timestamp' => $item['timestamp'],
         'genre' => $item['genre'] ?? null,
+        'summary'=> $item['summary'] ?? null,
       ];
     }
   }
