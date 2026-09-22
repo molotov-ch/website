@@ -54,7 +54,6 @@ a.active {
 
 .nav-links {
   display: flex;
-  list-style: none;
 }
 @media (max-width: 768px) {
   .nav-links {
@@ -69,4 +68,7 @@ a.active {
   #nav-toggle:checked ~ .nav-links {
     display: flex;
   }
+}
+nav {
+  position: relative;
 }
