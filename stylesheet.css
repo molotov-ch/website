@@ -1,54 +1,72 @@
 .borderA {
-    border-color: black;
-    border-style: solid;
-    border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-width: 2px;
 }
 
 .borderB {
-    border-color: black;
-    border-style: solid;
-    border-top: none;
-    border-right: none;
-    border-left: none;
-    border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  border-width: 2px;
 }
 
 .borderT {
-    border-color: black;
-    border-style: solid;
-    border-right: none;
-    border-left: none;
-    border-bottom: none;
-    border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  border-width: 2px;
 }
 
 .borderL {
-    border-color: black;
-    border-style: solid;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-top: none;
+  border-right: none;
+  border-bottom: none;
+  border-width: 2px;
 }
 
 .borderR {
-    border-color: black;
-    border-style: solid;
-    border-top: none;
-    border-left: none;
-    border-bottom: none;
-    border-width: 2px;
+  border-color: black;
+  border-style: solid;
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+  border-width: 2px;
 }
 
 a.active {
-    color: black;
-    pointer-events: none;
-    text-decoration: none;
-
+  color: black;
+  pointer-events: none;
+  text-decoration: none;
 }
 
 .item {
-    color: darkred;
-    pointer-events: all;
-    text-decoration: underline;
+  color: darkred;
+  pointer-events: all;
+  text-decoration: underline;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+}
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #333;
+  }
+  #nav-toggle:checked ~ .nav-links {
+    display: flex;
+  }
 }

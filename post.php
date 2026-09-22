@@ -78,7 +78,7 @@ $postDate = $dtObj ? $dtObj->format('d/m/Y H:i:s') : '—';
                 <div class="row align-items-center">
                     <div class="col">
 
-                        <a class="item" href="blog.php">&laquo; back to blog</a>
+                        <a class="item" href="blog.php">&laquo; back to list</a>
                     </div>
                     <div class="col-8">
                         <div class="row align-items-center">
