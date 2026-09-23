@@ -7,8 +7,8 @@ if (file_exists($cacheFile) && time() - filemtime($cacheFile) < 15) {
     exit;
 }
 
-foreach (file(__DIR__ . '../var.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
-    if (strpos(trim($line), '#') === 0) continue; // skip comments
+foreach (file(dirname(__DIR__) . '/var.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+    if (strpos(trim($line), '#') === 0) continue;
     [$key, $value] = explode('=', $line, 2);
     putenv(trim($key) . '=' . trim($value));
 }
@@ -32,6 +32,12 @@ curl_setopt_array($ch, [
 ]);
 $tokenResp = json_decode(curl_exec($ch), true);
 
+// TEMP DEBUG — remove once diagnosed
+if (empty($tokenResp['access_token'])) {
+    echo json_encode(['playing' => false, 'debug' => $tokenResp]);
+    exit;
+}
+
 $output = json_encode(['playing' => false]);
 
 if (!empty($tokenResp['access_token'])) {
@@ -43,6 +49,12 @@ if (!empty($tokenResp['access_token'])) {
     $body = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
+    // TEMP DEBUG — remove once diagnosed
+    if ($status !== 200) {
+        echo json_encode(['playing' => false, 'debug_status' => $status, 'debug_body' => $body]);
+        exit;
+    }
+
     if ($status === 200) {
         $data = json_decode($body, true);
         if (!empty($data['is_playing']) && !empty($data['item'])) {
@@ -52,14 +64,12 @@ if (!empty($tokenResp['access_token'])) {
                 'artist'   => implode(', ', array_column($data['item']['artists'], 'name')),
                 'albumArt' => $data['item']['album']['images'][2]['url'] ?? $data['item']['album']['images'][0]['url'],
             ]);
+        } else {
+            // TEMP DEBUG — remove once diagnosed
+            $output = json_encode(['playing' => false, 'debug_data' => $data]);
         }
     }
 }
 
-// TEMP DEBUG — remove after diagnosing
-if (empty($tokenResp['access_token'])) {
-    echo json_encode(['playing' => false, 'debug' => $tokenResp]);
-    exit;
-}
 file_put_contents($cacheFile, $output);
 echo $output;
