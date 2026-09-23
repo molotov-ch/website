@@ -53,14 +53,11 @@ a.active {
 }
 
 .now-playing {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
   font-size: 0.5rem;
   text-align: left;
   line-height: 1.2;
   white-space: nowrap;
   font-family: monospace;
-  color: darkgray;
+  color: darkred;
+  font-style: italic;
 }
