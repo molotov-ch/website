@@ -51,24 +51,3 @@ a.active {
   pointer-events: all;
   text-decoration: underline;
 }
-
-.nav-links {
-  display: flex;
-}
-@media (max-width: 768px) {
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background: #333;
-  }
-  #nav-toggle:checked ~ .nav-links {
-    display: flex;
-  }
-}
-nav {
-  position: relative;
-}
