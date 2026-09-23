@@ -56,5 +56,10 @@ if (!empty($tokenResp['access_token'])) {
     }
 }
 
+// TEMP DEBUG — remove after diagnosing
+if (empty($tokenResp['access_token'])) {
+    echo json_encode(['playing' => false, 'debug' => $tokenResp]);
+    exit;
+}
 file_put_contents($cacheFile, $output);
 echo $output;
