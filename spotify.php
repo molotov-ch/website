@@ -7,6 +7,12 @@ if (file_exists($cacheFile) && time() - filemtime($cacheFile) < 15) {
     exit;
 }
 
+foreach (file(__DIR__ . '/var.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+    if (strpos(trim($line), '#') === 0) continue; // skip comments
+    [$key, $value] = explode('=', $line, 2);
+    putenv(trim($key) . '=' . trim($value));
+}
+
 $clientId     = getenv('SPOTIFY_CLIENT_ID');
 $clientSecret = getenv('SPOTIFY_CLIENT_SECRET');
 $refreshToken = getenv('SPOTIFY_REFRESH_TOKEN');
@@ -25,7 +31,6 @@ curl_setopt_array($ch, [
     ],
 ]);
 $tokenResp = json_decode(curl_exec($ch), true);
-curl_close($ch);
 
 $output = json_encode(['playing' => false]);
 
@@ -37,7 +42,6 @@ if (!empty($tokenResp['access_token'])) {
     ]);
     $body = curl_exec($ch);
     $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
 
     if ($status === 200) {
         $data = json_decode($body, true);
@@ -52,6 +56,5 @@ if (!empty($tokenResp['access_token'])) {
     }
 }
 
-if (!is_dir(__DIR__ . '/cache')) mkdir(__DIR__ . '/cache');
 file_put_contents($cacheFile, $output);
 echo $output;
