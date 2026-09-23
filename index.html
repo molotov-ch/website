@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>molotovs website</title>
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
@@ -19,6 +19,24 @@
     />
     <link rel="stylesheet" href="stylesheet.css" />
   </head>
+  <script>
+    async function updateNowPlaying() {
+      try {
+        const res = await fetch("spotify.php");
+        const data = await res.json();
+        const el = document.getElementById("now-playing");
+        if (data.playing) {
+          el.innerHTML = `<img src="${data.albumArt}" alt="">♪ ${data.track} — ${data.artist}`;
+        } else {
+          el.innerHTML = "♪ not listening rn";
+        }
+      } catch (e) {
+        // fail silently, don't clutter the page over a Spotify hiccup
+      }
+    }
+    updateNowPlaying();
+    setInterval(updateNowPlaying, 20000);
+  </script>
 
   <body style="background-color: antiquewhite">
     <div class="container text-center">
@@ -29,7 +47,7 @@
             <div class="col"></div>
             <div class="col-8">
               <div class="row align-items-center">
-                <div class="col borderB" style="padding-bottom: 10px">
+                <div class="col borderB position-relative d-flex justify-content-center" style="padding-bottom: 10px">
                   <img src="img/username.gif" />
                 </div>
               </div>
@@ -42,10 +60,16 @@
                   <nav>
                     <a href="index.html" class="active">&laquo;home<br /></a>
                     <a href="blog.php" class="item">&raquo;blog<br /></a>
-                    <a href="articles.html" class="item">&raquo;articles<br /></a>
+                    <a href="articles.html" class="item"
+                      >&raquo;articles<br
+                    /></a>
                     <a href="about.html" class="item">&raquo;about<br /></a>
                     <a href="contact.html" class="item">&raquo;contact<br /></a>
-                    <a href="https://lu.tiny-universes.net/indiewebmanifesto.html" class="item">&raquo;web manifesto<br /></a>
+                    <a
+                      href="https://lu.tiny-universes.net/indiewebmanifesto.html"
+                      class="item"
+                      >&raquo;web manifesto<br
+                    /></a>
                   </nav>
                 </div>
               </div>
