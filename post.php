@@ -115,13 +115,13 @@ $postDate = $dtObj ? $dtObj->format('d/m/Y H:i:s') : '—';
                             </div>
                             <div class="col-4">
                                 <nav>
-                                    <a href="index.html" class="item">home<br /></a>
-                                    <a href="blog.php" class="active">blog<br /></a>
-                                    <a href="articles.html" class="item">articles<br /></a>
-                                    <a href="about.html" class="item">about<br /></a>
-                                    <a href="contact.html" class="item">contact<br /></a>
-                                    <a href="https://lu.tiny-universes.net/indiewebmanifesto.html" class="item">web
-                                        manifesto<br /></a>
+                                    <a href="index.html" class="item">&raquo;home<br /></a>
+                                    <a href="blog.php" class="active">&laquo;blog<br /></a>
+                                    <a href="articles.html" class="item">&raquo;articles<br /></a>
+                                    <a href="about.html" class="item">&raquo;about<br /></a>
+                                    <a href="contact.html" class="item">&raquo;contact<br /></a>
+                                    <a href="https://lu.tiny-universes.net/indiewebmanifesto.html"
+                                        class="item">&raquo;web manifesto<br /></a>
                                 </nav>
                             </div>
                         </div>
