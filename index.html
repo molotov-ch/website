@@ -19,24 +19,6 @@
     />
     <link rel="stylesheet" href="stylesheet.css" />
   </head>
-  <script>
-    async function updateNowPlaying() {
-      try {
-        const res = await fetch("spotify.php");
-        const data = await res.json();
-        const el = document.getElementById("now-playing");
-        if (data.playing) {
-          el.innerHTML = `♪ ${data.track} — ${data.artist}`;
-        } else {
-          el.innerHTML = "♪ not listening rn";
-        }
-      } catch (e) {
-        // fail silently, don't clutter the page over a Spotify hiccup
-      }
-    }
-    updateNowPlaying();
-    setInterval(updateNowPlaying, 20000);
-  </script>
 
   <body style="background-color: antiquewhite">
     <div class="container text-center">
@@ -98,5 +80,23 @@
         <div class="col"></div>
       </div>
     </div>
+  <script>
+    async function updateNowPlaying() {
+      try {
+        const res = await fetch("spotify.php");
+        const data = await res.json();
+        const el = document.getElementById("now-playing");
+        if (data.playing) {
+          el.innerHTML = `♪ ${data.track} — ${data.artist}`;
+        } else {
+          el.innerHTML = "♪ not listening rn";
+        }
+      } catch (e) {
+        // fail silently, don't clutter the page over a Spotify hiccup
+      }
+    }
+    updateNowPlaying();
+    setInterval(updateNowPlaying, 20000);
+  </script>
   </body>
 </html>
