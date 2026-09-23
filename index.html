@@ -26,7 +26,7 @@
         const data = await res.json();
         const el = document.getElementById("now-playing");
         if (data.playing) {
-          el.innerHTML = `<img src="${data.albumArt}" alt="">♪ ${data.track} — ${data.artist}`;
+          el.innerHTML = `♪ ${data.track} — ${data.artist}`;
         } else {
           el.innerHTML = "♪ not listening rn";
         }

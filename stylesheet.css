@@ -57,14 +57,10 @@ a.active {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 0.75rem;
+  font-size: 0.5rem;
   text-align: left;
   line-height: 1.2;
   white-space: nowrap;
-}
-.now-playing img {
-  width: 28px;
-  height: 28px;
-  vertical-align: middle;
-  margin-right: 4px;
+  font-family: monospace;
+  color: darkgray;
 }
