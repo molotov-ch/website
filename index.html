@@ -40,8 +40,8 @@
               <div class="row align-items-center">
                 <div class="col-8">
                   hi i'm molotov. interested in what i do or what i have to say?
-                  check them out &raquo;
-                  if you want to know what i'm currently listening to, just check top left on any page :]
+                  check them out &raquo; if you want to know what i'm currently
+                  listening to, just check top left on any page :]
                 </div>
                 <div class="col-4 borderL">
                   <nav>
@@ -81,23 +81,23 @@
         <div class="col"></div>
       </div>
     </div>
-  <script>
-    async function updateNowPlaying() {
-      try {
-        const res = await fetch("spotify.php");
-        const data = await res.json();
-        const el = document.getElementById("now-playing");
-        if (data.playing) {
-          el.innerHTML = `♪ ${data.track} — ${data.artist}`;
-        } else {
-          el.innerHTML = "♪ not listening rn";
+    <script>
+      async function updateNowPlaying() {
+        try {
+          const res = await fetch("spotify.php");
+          const data = await res.json();
+          const el = document.getElementById("now-playing");
+          if (data.playing) {
+            el.innerHTML = `<span class="now-playing-inner">♪ ${data.track} — ${data.artist}</span>`;
+          } else {
+            el.innerHTML = `<span class="now-playing-inner">♪ not listening rn</span>`;
+          }
+        } catch (e) {
+          // fail silently, don't clutter the page over a Spotify hiccup
         }
-      } catch (e) {
-        // fail silently, don't clutter the page over a Spotify hiccup
       }
-    }
-    updateNowPlaying();
-    setInterval(updateNowPlaying, 20000);
-  </script>
+      updateNowPlaying();
+      setInterval(updateNowPlaying, 20000);
+    </script>
   </body>
 </html>
