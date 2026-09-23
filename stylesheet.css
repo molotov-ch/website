@@ -60,6 +60,9 @@ a.active {
   font-family: monospace;
   color: darkred;
   font-style: italic;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .now-playing-inner {
