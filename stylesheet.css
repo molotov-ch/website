@@ -60,7 +60,6 @@ a.active {
   font-family: monospace;
   color: darkred;
   font-style: italic;
-  width: 100%; /* constrain to the col-4's width */
 }
 
 .now-playing-inner {
