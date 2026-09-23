@@ -7,7 +7,7 @@ if (file_exists($cacheFile) && time() - filemtime($cacheFile) < 15) {
     exit;
 }
 
-foreach (file(dirname(__DIR__) . '/var.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
+foreach (file('/srv/molotov-site/var.env', FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES) as $line) {
     if (strpos(trim($line), '#') === 0) continue;
     [$key, $value] = explode('=', $line, 2);
     putenv(trim($key) . '=' . trim($value));
