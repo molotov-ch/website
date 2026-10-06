@@ -117,7 +117,7 @@ $postDate = $dtObj ? $dtObj->format('d/m/Y H:i:s') : '—';
                                 <nav>
                                     <a href="index.html" class="item">&raquo;home<br /></a>
                                     <a href="blog.php" class="active">&laquo;blog<br /></a>
-                                    <a href="articles.html" class="item">&raquo;articles<br /></a>
+                                    <a href="articles.php" class="item">&raquo;articles<br /></a>
                                     <a href="about.html" class="item">&raquo;about<br /></a>
                                     <a href="contact.html" class="item">&raquo;contact<br /></a>
                                     <a href="https://lu.tiny-universes.net/indiewebmanifesto.html"

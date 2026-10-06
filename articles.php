@@ -35,7 +35,7 @@ function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
   return $filtered;
 }
 
-$dataFile = __DIR__ . '/../data/blogs.json';
+$dataFile = __DIR__ . '/../data/articles.json';
 $archivePosts = parseJsonTitles($dataFile);
 ?>
 
@@ -102,8 +102,8 @@ $archivePosts = parseJsonTitles($dataFile);
               <div class="col-4">
                 <nav>
                     <a href="index.html" class="item">&raquo;home<br /></a>
-                    <a href="blog.php" class="active">&laquo;blog<br /></a>
-                    <a href="articles.php" class="item">&raquo;articles<br /></a>
+                    <a href="blog.php" class="item">&raquo;blog<br /></a>
+                    <a href="articles.html" class="active">&laquo;articles<br /></a>
                     <a href="about.html" class="item">&raquo;about<br /></a>
                     <a href="contact.html" class="item">&raquo;contact<br /></a>
                     <a href="https://lu.tiny-universes.net/indiewebmanifesto.html" class="item">&raquo;web manifesto<br /></a>
