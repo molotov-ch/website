@@ -1,4 +1,7 @@
 <?php
+const DATA_DIR = __DIR__ . '/../data';
+const DOWNLOADS_DIR = DATA_DIR . '/downloads';
+
 function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
 {
   $jsonData = file_get_contents($filePath);
@@ -20,7 +23,8 @@ function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
         'title' => $item['title'],
         'timestamp' => $item['timestamp'],
         'genre' => $item['genre'] ?? null,
-        'summary'=> $item['summary'] ?? null,
+        'summary' => $item['summary'] ?? null,
+        'file' => $item['file'] ?? $item['link'] ?? null,
       ];
     }
   }
@@ -35,8 +39,48 @@ function parseJsonTitles(string $filePath, string $postsKey = 'posts'): array
   return $filtered;
 }
 
-$dataFile = __DIR__ . '/../data/articles.json';
+// Resolves a filename from articles.json to a real path inside data/downloads.
+// Returns null if the file is missing or tries to escape the directory.
+function resolveDownload(?string $name): ?string
+{
+  if (!$name) {
+    return null;
+  }
+  $base = realpath(DOWNLOADS_DIR);
+  $path = realpath(DOWNLOADS_DIR . '/' . $name);
+  if ($base === false || $path === false) {
+    return null;
+  }
+  if (strncmp($path, $base . DIRECTORY_SEPARATOR, strlen($base) + 1) !== 0) {
+    return null;
+  }
+  return is_file($path) ? $path : null;
+}
+
+$dataFile = DATA_DIR . '/articles.json';
 $archivePosts = parseJsonTitles($dataFile);
+
+// Serve a file: articles.php?download=<index>
+if (isset($_GET['download'])) {
+  $path = null;
+  foreach ($archivePosts as $post) {
+    if ((string) $post['index'] === (string) $_GET['download']) {
+      $path = resolveDownload($post['file']);
+      break;
+    }
+  }
+  if ($path === null) {
+    http_response_code(404);
+    exit('File not found');
+  }
+  $mime = mime_content_type($path) ?: 'application/octet-stream';
+  header('Content-Type: ' . $mime);
+  header('Content-Length: ' . filesize($path));
+  header('Content-Disposition: inline; filename="' . addslashes(basename($path)) . '"');
+  header('X-Content-Type-Options: nosniff');
+  readfile($path);
+  exit;
+}
 ?>
 
 
