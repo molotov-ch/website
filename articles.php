@@ -121,8 +121,13 @@ if (isset($_GET['download'])) {
                     <?php foreach ($archivePosts as $post):
                       $dt = DateTime::createFromFormat('d/m/Y His', $post['timestamp']);
                       $daysAgo = $dt ? (new DateTime())->diff($dt)->days : null;
+                      $hasFile = resolveDownload($post['file']) !== null;
                       ?>
-                      <a href="post.php?id=<?= $post['index'] ?>" style="text-decoration: none; color: inherit;">
+                      <?php if ($hasFile): ?>
+                        <a href="?download=<?= urlencode((string) $post['index']) ?>"
+                          download="<?= htmlspecialchars(basename($post['file'])) ?>"
+                          style="text-decoration: none; color: inherit;">
+                      <?php endif; ?>
                         <div class="borderB" style="margin-bottom: 14px; padding-bottom: 10px;">
                           <div style="display: flex; justify-content: space-between; align-items: baseline;">
                             <strong><?= htmlspecialchars($post['title']) ?></strong>
@@ -134,10 +139,12 @@ if (isset($_GET['download'])) {
                             <?= htmlspecialchars($post['genre'] ?? '[genre]') ?>
                           </div>
                           <div style="font-size: 0.9em;">
-                            <?= htmlspecialchars($post['summary'] ??'[summary]') ?>
+                            <?= htmlspecialchars($post['summary'] ?? '[summary]') ?>
                           </div>
                         </div>
-                      </a>
+                      <?php if ($hasFile): ?>
+                        </a>
+                      <?php endif; ?>
                     <?php endforeach; ?>
                   </div>
 
