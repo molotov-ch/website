@@ -1,44 +1,194 @@
-.borderA {
-  border-color: black;
-  border-style: solid;
-  border-width: 2px;
+
+:root {
+  --paper: #ede4cf;
+  --ink: #161412;
+  --red: #c0261c;
+  --rule: 3px solid var(--ink);
 }
 
-.borderB {
-  border-color: black;
-  border-style: solid;
-  border-top: none;
-  border-right: none;
-  border-left: none;
-  border-width: 2px;
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "PT Sans", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.55;
 }
 
-.borderT {
-  border-color: black;
-  border-style: solid;
-  border-right: none;
-  border-left: none;
+.sheet {
+  border: var(--rule);
+  background: var(--paper);
+}
+
+/* ---------- now playing ---------- */
+
+.now-playing {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: monospace;
+  font-size: 0.8rem;
+  line-height: 1;
+  padding: 7px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  min-height: 26px;
+}
+
+.now-playing-inner {
+  display: inline-block;
+  padding-left: 100%; 
+  animation: marquee 16s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .now-playing-inner {
+    animation: none;
+    padding-left: 12px;
+  }
+}
+
+/* ---------- masthead ---------- */
+
+.masthead {
+  position: relative;
+  aspect-ratio: 4 / 1;
+  container-type: inline-size;       /* lets the text scale with the header */
+  border-bottom: var(--rule);
+  background:
+    url("img/molotov.png") 98.17% 17.6% / 37.88% auto no-repeat,
+    linear-gradient(45deg, #000 49.7%, #ff0000 49.7%);
+}
+
+.masthead h1 {
+  position: absolute;
+  left: 3.8%;
+  top: 50%;
+  margin: 0;
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+  font-size: 9cqw;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  
+}
+
+/* ---------- intro ---------- */
+
+.intro {
+  padding: 36px 40px;
+  border-right: var(--rule);
+}
+
+.intro p {
+  margin: 0 0 1em;
+  max-width: 34em;
+}
+
+.intro p:last-child {
+  margin-bottom: 0;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2.2rem;
+  line-height: 1.15;
+}
+
+.arrow {
+  color: var(--red);
+  font-weight: 700;
+}
+
+/* ---------- nav ---------- */
+
+.nav-block a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 11px 20px;
+  border-bottom: var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.nav-block a:last-child {
   border-bottom: none;
-  border-width: 2px;
 }
 
-.borderL {
-  border-color: black;
-  border-style: solid;
-  border-top: none;
-  border-right: none;
-  border-bottom: none;
-  border-width: 2px;
+.nav-block .num {
+  color: var(--red);
+  font-size: 0.9rem;
 }
 
-.borderR {
-  border-color: black;
-  border-style: solid;
-  border-top: none;
-  border-left: none;
-  border-bottom: none;
-  border-width: 2px;
+.nav-block a:hover,
+.nav-block a:focus-visible {
+  background: var(--red);
+  color: var(--paper);
+  outline: none;
 }
+
+.nav-block a:hover .num,
+.nav-block a:focus-visible .num {
+  color: var(--ink);
+}
+
+.nav-block a.active {
+  background: var(--ink);
+  color: var(--paper);
+  pointer-events: none;
+}
+
+/* ---------- badges ---------- */
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  padding: 12px;
+  border-top: var(--rule);
+  min-height: 57px;
+}
+
+/* ---------- below md: stack ---------- */
+
+@media (max-width: 767.98px) {
+  .sheet {
+    margin-left: 12px;
+    margin-right: 12px;
+    width: auto;
+  }
+
+
+  .intro {
+    padding: 24px 22px;
+    border-right: none;
+    border-bottom: var(--rule);
+  }
+
+  .hello {
+    font-size: 1.6rem;
+  }
+}
+
+/* ---------- old helpers, kept for the other pages ---------- */
+
+.borderA { border: 2px solid black; }
+.borderB { border-bottom: 2px solid black; }
+.borderT { border-top: 2px solid black; }
+.borderL { border-left: 2px solid black; }
+.borderR { border-right: 2px solid black; }
 
 a.active {
   color: black;
@@ -52,30 +202,6 @@ a.active {
   text-decoration: underline;
 }
 
-.now-playing {
-  font-size: 0.7rem;
-  text-align: left;
-  line-height: 1.2;
-  white-space: nowrap;
-  font-family: monospace;
-  color: darkred;
-  font-style: italic;
-  width: 100%;
-  max-width: 100%;
-  overflow: hidden;
-}
-
-.now-playing-inner {
-  display: inline-block;
-  padding-left: 100%; /* starts off-screen to the right */
-  animation: marquee 12s linear infinite;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
+.nav-block a.item {
+  text-decoration: none;
 }
