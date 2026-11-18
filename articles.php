@@ -86,102 +86,136 @@ if (isset($_GET['download'])) {
 
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>molotovs website</title>
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=VT323&family=PT+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/stylesheet.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>molotovs website</title>
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
-  <link rel="stylesheet" href="stylesheet.css" />
-</head>
-
-<body style="background-color: antiquewhite">
-  <div class="container text-center">
-    <div class="row min-vh-100 align-items-center">
-      <div class="col"></div>
-      <div class="col-8">
-        <div class="row align-items-center">
-          <div class="col"></div>
-          <div class="col-8">
-            <div class="row align-items-center">
-              <div class="col borderB" style="padding-bottom: 10px">
-                <img src="img/username.gif" />
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="col-8">
-                <div class="row align-items-center">
-                  <div class="col borderR" style="padding: 12px; text-align: left;">
-                    <?php foreach ($archivePosts as $post):
-                      $dt = DateTime::createFromFormat('d/m/Y His', $post['timestamp']);
-                      $daysAgo = $dt ? (new DateTime())->diff($dt)->days : null;
-                      $hasFile = resolveDownload($post['file']) !== null;
-                      ?>
-                      <?php if ($hasFile): ?>
-                        <a href="?download=<?= urlencode((string) $post['index']) ?>"
-                          download="<?= htmlspecialchars(basename($post['file'])) ?>"
-                          style="text-decoration: none; color: inherit;">
-                      <?php endif; ?>
-                        <div class="borderB" style="margin-bottom: 14px; padding-bottom: 10px;">
-                          <div style="display: flex; justify-content: space-between; align-items: baseline;">
-                            <strong><?= htmlspecialchars($post['title']) ?></strong>
-                            <span class="text-muted" style="font-size: 0.8em;">
-                              <?= $daysAgo !== null ? "{$daysAgo}d ago" : '—' ?>
-                            </span>
-                          </div>
-                          <div class="text-muted" style="font-size: 0.8em; margin-bottom: 4px;">
-                            <?= htmlspecialchars($post['genre'] ?? '[genre]') ?>
-                          </div>
-                          <div style="font-size: 0.9em;">
-                            <?= htmlspecialchars($post['summary'] ?? '[summary]') ?>
-                          </div>
-                        </div>
-                      <?php if ($hasFile): ?>
-                        </a>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-                  </div>
-
-                </div>
-              </div>
-              <div class="col-4">
-                <nav>
-                    <a href="index.html" class="item">&raquo;home<br /></a>
-                    <a href="blog.php" class="item">&raquo;blog<br /></a>
-                    <a href="articles.html" class="active">&laquo;articles<br /></a>
-                    <a href="about.html" class="item">&raquo;about<br /></a>
-                    <a href="contact.html" class="item">&raquo;contact<br /></a>
-                    <a href="https://lu.tiny-universes.net/indiewebmanifesto.html" class="item">&raquo;web manifesto<br /></a>
-                  </nav>
-              </div>
-            </div>
-            <div class="row align-items-center">
-              <div class="col borderT" style="padding: 4px">
-                <img src="img/badges/acab2.gif" />
-                <img src="img/badges/antinazi.gif" />
-                <img src="img/badges/armed.gif" />
-                <img src="img/badges/nft.gif" />
-                <img src="img/badges/bestview.gif" />
-                <img src="img/badges/internetprivacy.gif" />
-                <img src="img/badges/github-check.gif" />
-                <img src="img/badges/twitter.gif" />
-                <img src="img/badges/steam.gif" />
-                <img src="img/badges/iww.gif" />
-              </div>
-            </div>
-          </div>
-          <div class="col"></div>
+  <body>
+    <div class="container sheet p-0 my-3 my-md-5">
+      <!-- now playing strip -->
+      <div class="row g-0">
+        <div class="col-12">
+          <div id="now-playing" class="now-playing"></div>
         </div>
       </div>
-      <div class="col"></div>
-    </div>
-  </div>
-</body>
 
+      <!-- masthead: wedge + circle + name -->
+      <div class="row g-0">
+        <div class="col-12 masthead">
+          <h1>molotv.dev</h1>
+        </div>
+      </div>
+
+      <!-- articles + nav -->
+      <div class="row g-0">
+        <div class="col-12 col-md-8 blog-col">
+          <div class="posts posts--wide">
+            <?php foreach ($archivePosts as $post):
+              $dt = DateTime::createFromFormat('d/m/Y His', $post['timestamp']);
+              $daysAgo = $dt ? (new DateTime())->diff($dt)->days : null;
+              $hasFile = resolveDownload($post['file']) !== null;
+              ?>
+              <?php if ($hasFile): ?>
+                <a href="?download=<?= urlencode((string) $post['index']) ?>"
+                  download="<?= htmlspecialchars(basename($post['file'])) ?>"
+                  class="post">
+              <?php else: ?>
+                <div class="post">
+              <?php endif; ?>
+                <div class="post-top">
+                  <span class="post-genre"><?= htmlspecialchars($post['genre'] ?? '[genre]') ?></span>
+                  <span class="post-ago"><?= $daysAgo !== null ? "{$daysAgo}d ago" : '—' ?></span>
+                </div>
+                <div class="post-body">
+                  <strong class="post-title"><?= htmlspecialchars($post['title']) ?></strong>
+                  <div class="post-summary">
+                    <?= htmlspecialchars($post['summary'] ?? '[summary]') ?>
+                  </div>
+                  <?php if ($hasFile): ?>
+                    <span class="post-more">
+                      download <?= htmlspecialchars(strtolower(pathinfo($post['file'], PATHINFO_EXTENSION))) ?> &raquo;
+                    </span>
+                  <?php endif; ?>
+                </div>
+              <?php if ($hasFile): ?>
+                </a>
+              <?php else: ?>
+                </div>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <nav class="nav-block">
+            <div class=""></div>
+            <a href="index.html" class="item"><span>home</span><span class="num">01</span></a>
+            <a href="blog.php" class="item"><span>blog</span><span class="num">02</span></a>
+            <a href="articles.php" class="active"><span>articles</span><span class="num">03</span></a>
+            <a href="about.html" class="item"><span>about</span><span class="num">04</span></a>
+            <a href="contact.html" class="item"><span>contact</span><span class="num">05</span></a>
+            <a href="https://lu.tiny-universes.net/indiewebmanifesto.html" class="item"
+              ><span>web manifesto</span><span class="num">&nearr;</span></a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- badges -->
+      <div class="row g-0">
+        <div class="col-12 badges">
+          <img src="img/badges/acab2.gif" alt="" />
+          <img src="img/badges/antinazi.gif" alt="" />
+          <img src="img/badges/armed.gif" alt="" />
+          <img src="img/badges/nft.gif" alt="" />
+          <img src="img/badges/bestview.gif" alt="" />
+          <img src="img/badges/internetprivacy.gif" alt="" />
+          <img src="img/badges/github-check.gif" alt="" />
+          <img src="img/badges/twitter.gif" alt="" />
+          <img src="img/badges/steam.gif" alt="" />
+          <img src="img/badges/iww.gif" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function updateNowPlaying() {
+        try {
+          const res = await fetch("spotify.php");
+          const data = await res.json();
+          const el = document.getElementById("now-playing");
+          if (data.playing) {
+            el.innerHTML = `<span class="now-playing-inner">♪ ${data.track} — ${data.artist}</span>`;
+          } else {
+            el.innerHTML = `<span class="now-playing-inner">♪ not listening rn</span>`;
+          }
+        } catch (e) {
+          // fail silently, don't clutter the page over a Spotify hiccup
+        }
+      }
+      updateNowPlaying();
+      setInterval(updateNowPlaying, 20000);
+    </script>
+  </body>
 </html>

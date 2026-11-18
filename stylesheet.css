@@ -1,4 +1,3 @@
-
 :root {
   --paper: #ede4cf;
   --ink: #161412;
@@ -35,7 +34,7 @@ body {
 
 .now-playing-inner {
   display: inline-block;
-  padding-left: 100%; 
+  padding-left: 100%;
   animation: marquee 16s linear infinite;
 }
 
@@ -75,7 +74,6 @@ body {
   font-size: 9cqw;
   line-height: 1;
   letter-spacing: 0.02em;
-  
 }
 
 /* ---------- intro ---------- */
@@ -149,6 +147,311 @@ body {
   pointer-events: none;
 }
 
+/* ---------- blog ---------- */
+
+.blog-col {
+  border-right: var(--rule);
+}
+
+.blog-head {
+  padding: 12px 24px;
+  border-bottom: var(--rule);
+  background: var(--red);
+  color: var(--paper);
+}
+
+.blog-head h2 {
+  margin: 0;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+  padding: 24px;
+}
+
+.posts .post {
+  display: flex;
+  flex-direction: column;
+  border: var(--rule);
+  box-shadow: 6px 6px 0 var(--ink);
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.post-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.75em;
+  padding: 8px 14px;
+  border-bottom: var(--rule);
+  font-family: "VT323", monospace;
+  font-size: 1.1rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.post-genre {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0 0.4em;
+}
+
+.post-ago {
+  color: var(--red);
+}
+
+.post-body {
+  padding: 14px;
+}
+
+.post-title {
+  display: block;
+  margin-bottom: 0.3em;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
+.post-summary {
+  font-size: 1rem;
+}
+
+.posts .post:hover,
+.posts .post:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  outline: none;
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--red);
+}
+
+.posts .post:hover .post-genre,
+.posts .post:focus-visible .post-genre {
+  background: var(--red);
+}
+
+.posts .post:hover .post-ago,
+.posts .post:focus-visible .post-ago {
+  color: var(--paper);
+}
+
+
+/* ---------- articles: wide cards ---------- */
+/* paste below the blog section in stylesheet.css */
+ 
+.posts--wide {
+  grid-template-columns: 1fr;
+}
+ 
+.posts--wide .post-title {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 0.35em;
+}
+ 
+.posts--wide .post-body {
+  padding: 16px 18px 18px;
+}
+ 
+.post-more {
+  display: inline-block;
+  margin-top: 0.7em;
+  font-family: "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--red);
+}
+ 
+.posts .post:hover .post-more,
+.posts .post:focus-visible .post-more {
+  color: var(--paper);
+}
+ 
+/* cards without a file aren't links, so no hover effect */
+.posts div.post:hover {
+  background: none;
+  color: inherit;
+  transform: none;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+ 
+.posts div.post:hover .post-genre {
+  background: var(--ink);
+}
+ 
+.posts div.post:hover .post-ago {
+  color: var(--red);
+}
+ 
+
+/* ---------- single post ---------- */
+
+.blog-head .back {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.blog-head .back:hover,
+.blog-head .back:focus-visible {
+  color: var(--ink);
+  outline: none;
+}
+
+.article {
+  padding: 32px 40px 40px;
+}
+
+.article-image {
+  display: block;
+  max-width: 100%;
+  margin-bottom: 20px;
+  border: var(--rule);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+
+.article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2em 0.9em;
+  font-family: "VT323", monospace;
+  font-size: 1.15rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.article-author {
+  color: var(--red);
+}
+
+.article-title {
+  margin: 0.3em 0 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: var(--rule);
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
+/* typography for the post body (raw HTML from blogs.json) */
+
+.article-content {
+  max-width: 38em;
+}
+
+.article-content p {
+  margin: 0 0 1.1em;
+}
+
+.article-content h1,
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+  margin: 1.6em 0 0.5em;
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.article-content h1,
+.article-content h2 { font-size: 1.6rem; }
+.article-content h3 { font-size: 1.3rem; }
+.article-content h4 { font-size: 1.1rem; color: var(--red); }
+
+.article-content a {
+  color: var(--red);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.article-content a:hover {
+  background: var(--red);
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.article-content blockquote {
+  margin: 1.4em 0;
+  padding: 0.2em 0 0.2em 1.1em;
+  border-left: 6px solid var(--red);
+  font-style: italic;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 0 0 1.1em;
+  padding-left: 1.4em;
+}
+
+.article-content li::marker {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.article-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 0.6em 0 1.2em;
+  border: var(--rule);
+}
+
+.article-content code {
+  font-family: "VT323", monospace;
+  font-size: 1.15em;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0 0.3em;
+}
+
+.article-content pre {
+  margin: 0 0 1.2em;
+  padding: 14px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  overflow-x: auto;
+}
+
+.article-content pre code {
+  padding: 0;
+}
+
+.article-content hr {
+  margin: 2em 0;
+  border: 0;
+  border-top: var(--rule);
+  opacity: 1;
+}
+
 /* ---------- badges ---------- */
 
 .badges {
@@ -179,6 +482,24 @@ body {
 
   .hello {
     font-size: 1.6rem;
+  }
+
+  .blog-col {
+    border-right: none;
+    border-bottom: var(--rule);
+  }
+
+  .posts {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .article {
+    padding: 24px 22px 30px;
+  }
+
+  .article-title {
+    font-size: 1.8rem;
   }
 }
 
